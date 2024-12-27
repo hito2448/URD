@@ -1,6 +1,6 @@
 # Unlocking the Potential of Reverse Distillation for Anomaly Detection
 
-PyTorch Implementation of "Unlocking the Potential of Reverse Distillation for Anomaly Detection".
+[AAAI 2025] PyTorch Implementation of "Unlocking the Potential of Reverse Distillation for Anomaly Detection".
 [paper](https://arxiv.org/abs/2412.07579)
 
 ## 1. Environment
