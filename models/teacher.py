@@ -30,6 +30,21 @@ class Teacher(torch.nn.Module):
 
         return loss
 
+    def loss_distil_p(self, feature_s, feature_t):
+        """
+        Distillation between the student and teacher output (pixel-wise)
+            feature_s: features of student aligned to the size of features of teacher
+            feature_t: features of teacher
+        """
+        loss_type = torch.nn.CosineSimilarity()
+        loss = 0.0
+        for i in range(len(feature_s)):
+            cos = 1 - loss_type(feature_s[i], feature_t[i])
+            loss_i = torch.mean(cos)
+            loss += loss_i
+
+        return loss
+
     def loss_distil_aug(self, feature_s, feature_t):
         loss_type = torch.nn.CosineSimilarity()
         loss = 0.0
@@ -57,7 +72,6 @@ class Teacher(torch.nn.Module):
                 feature_t[i])
             cos = torch.unsqueeze(1-cos, dim=1)
             loss += loss_type(cos, anomaly_mask)
-            # loss += loss_normal + loss_anomaly
 
         return loss
 
@@ -71,9 +85,8 @@ class Teacher(torch.nn.Module):
         output_t_normal, output_t_aug = output_t[0], output_t[1]
         output_e_normal, output_e_aug = output_e[0], output_e[1]
 
-        loss_t_e_normal = self.loss_distil(output_t_normal, output_e_normal)
-        loss_t_e_aug = self.loss_distil(output_t_aug, output_e_aug) + self.loss_distil_aug_p(
-            output_t_aug, output_e_normal, anomaly_mask) + self.loss_distil_aug(output_t_aug, output_e_normal) * 0.1
+        loss_t_e_normal = self.loss_distil_p(output_t_normal, output_e_normal)
+        loss_t_e_aug = self.loss_distil_aug_p(output_t_aug, output_e_normal, anomaly_mask) + self.loss_distil(output_t_aug, output_e_aug)
 
         loss_t_e = loss_t_e_normal + loss_t_e_aug
 
