@@ -185,7 +185,7 @@ class Student(torch.nn.Module):
                     anomaly_mask < 0.5, torch.zeros_like(anomaly_mask), torch.ones_like(anomaly_mask)
                 )
 
-            cos = 1 - loss_type(feature_s[i], feature_t[i])
+            cos = loss_type(feature_s[i], feature_t[i])
             cos = torch.unsqueeze(1 - cos, dim=1)
             cos = cos * (1-anomaly_mask)
             loss_i = torch.mean(cos)
@@ -206,12 +206,10 @@ class Student(torch.nn.Module):
         output_e_normal, output_e_aug = output_e[0], output_e[1]
 
         loss_t_normal = self.loss_distil(output_s_normal, output_t_normal)
-        loss_t_aug = self.loss_distil(output_s_aug, output_t_normal) + self.loss_distil_aug_normalpixels(
-            output_s_aug, output_t_aug, anomaly_mask) * 0.1
+        loss_t_aug = self.loss_distil(output_s_aug, output_t_normal)
 
         loss_e_normal = self.loss_distil(output_s_normal, output_e_normal)
-        loss_e_aug = self.loss_distil(output_s_aug,output_e_normal) + self.loss_distil_aug_normalpixels(
-            output_s_aug, output_e_aug, anomaly_mask) * 0.1
+        loss_e_aug = self.loss_distil(output_s_aug,output_e_normal)
 
         loss_s_e = loss_e_normal + loss_e_aug
         loss_s_t = loss_t_normal + loss_t_aug
