@@ -22,7 +22,15 @@ Unzip the file to `./data/`.
         |-- cable
         |-- ....
 ```
-
+###   Describable Textures Dataset
+Refer to [DRAEM](https://github.com/VitjanZ/DRAEM), download  Describable Textures dataset from [Describable Textures dataset](https://www.robots.ox.ac.uk/~vgg/data/dtd/) for anomaly synthesis. 
+Unzip the file to `./data/`.
+```
+|--data
+    |-- dtd
+        |-- images
+        |-- ....
+```
 
 ## 3.Train and Test
 To get the training and inference results, simply execute the following command.
