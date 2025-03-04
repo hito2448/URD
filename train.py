@@ -97,7 +97,7 @@ def train(device, classname, data_root, log, epochs, learning_rate, batch_size, 
     test_dir = data_root + classname + '/test'
     gt_dir = data_root + classname + '/ground_truth'
 
-    anomaly_source_path = '../data/dtd/images/'
+    anomaly_source_path = './data/dtd/images/'
 
     full_category = [
         'carpet', 'grid', 'leather', 'tile', 'wood', 'transistor',
