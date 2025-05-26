@@ -44,10 +44,13 @@ Thanks to the codes provided by [Reverse Distillation](https://github.com/hq-den
 ## Citation
 If you think this work is helpful to you, please consider citing our paper.
 ```
-@article{urd2024,
-  title={Unlocking the Potential of Reverse Distillation for Anomaly Detection},
-  author={Xinyue Liu and Jianyuan Wang and Biao Leng and Shuo Zhang},
-  journal={arXiv preprint arXiv:2412.07579},
-  year={2024}
+@inproceedings{liu2025unlocking,
+  title={Unlocking the potential of reverse distillation for anomaly detection},
+  author={Liu, Xinyue and Wang, Jianyuan and Leng, Biao and Zhang, Shuo},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={39},
+  number={6},
+  pages={5640--5648},
+  year={2025}
 }
 ```
